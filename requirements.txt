@@ -2,3 +2,6 @@ requests
 pandas
 beautifulsoup4
 numpy
+logging
+pyyaml
+
