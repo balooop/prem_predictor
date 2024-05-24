@@ -18,8 +18,8 @@ if __name__ == "__main__":
     config = load_config('src/config.yaml')
     url = config['url']
     raw_data_path = config['raw_data_path']
-    played_output_path = config['played_output_path']
-    unplayed_output_path = config['unplayed_output_path']
+    played_path = config['played_output_path']
+    unplayed_path = config['unplayed_output_path']
     
     try: 
         # get data from fbref
@@ -35,9 +35,9 @@ if __name__ == "__main__":
 
         # clean data and format columns
         played, unplayed = clean_data(raw_data_path)
-        played.to_csv(played_output_path, index=False)
-        unplayed.to_csv(unplayed_output_path, index=False)
-        logging.info(f"Data saved successfully to {played_output_path}, {unplayed_output_path}.csv")
+        played.to_csv(played_path, index=False)
+        unplayed.to_csv(unplayed_path, index=False)
+        logging.info(f"Data saved successfully to {played_path}, {unplayed_path}")
 
 
     except Exception as e:

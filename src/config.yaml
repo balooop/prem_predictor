@@ -1,4 +1,4 @@
 url: 'https://fbref.com/en/comps/9/schedule/Premier-League-Scores-and-Fixtures'
 raw_data_path: 'data/pl_2023_2024.csv'
-played_output_path: 'data/played_pl_2023_2024.csv'
-unplayed_output_path: 'data/unplayed_pl_2023_2024.csv'
+played_path: 'data/played_pl_2023_2024.csv'
+unplayed_path: 'data/unplayed_pl_2023_2024.csv'
