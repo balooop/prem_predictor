@@ -92,9 +92,14 @@ if __name__ == "__main__":
     # load url from config
     url = 'https://fbref.com/en/comps/9/schedule/Premier-League-Scores-and-Fixtures'
     # test
-    result = scrape_data(url)
-    if result:
-        df = pd.DataFrame(result)
-        print("success\n", df.head, "\nshape:", df.shape)
-    else:
-        print("Data scraping failed")
+    try: 
+        result = scrape_data(url)
+        if result:
+            df = pd.DataFrame(result)
+            print("success\n", df.head(), "\nshape:", df.shape)
+        else:
+            print("Data scraping failed")
+    except Exception as e:                                      
+        logging.error(f"An error occurred: {e}")
+        traceback.print_exc()
+
