@@ -86,22 +86,14 @@ def scrape_data(url: str) -> Optional[Dict[str,list]]:
         cur_matchweek, cur_date = "", ""
         # process rows in the webpage (start at 1: to exclude header)
         for row in table.find_all('tr')[1:]:
-            # special cases, matchweek & date
-            matchweek = row.find('th', {'data-stat': DATA_STAT_GAMEWEEK}).text.strip() 
-            date = row.find('td', {'data-stat': DATA_STAT_DATE}).text.strip() 
-            # if we find a matchweek / date, set them. otherwise, if blank, use previous
-            cur_matchweek = matchweek if matchweek else cur_matchweek
-            cur_date = date if date else cur_date 
-            data["Matchweek"].append(cur_matchweek) 
-            data["Date"].append(cur_date)
-
-            #standard fields
+            # add data
+            data["Matchweek"].append(row.find('th', {'data-stat': DATA_STAT_GAMEWEEK}).text.strip()) 
+            data["Date"].append(row.find('td', {'data-stat': DATA_STAT_DATE}).text.strip())
             data["Home Team"].append(row.find('td', {'data-stat': DATA_STAT_HOME_TEAM}).text.strip())
             data["Home XG"].append(row.find('td', {'data-stat': DATA_STAT_HOME_XG}).text.strip())
             data["Score"].append(row.find('td', {'data-stat': DATA_STAT_SCORE}).text.strip())
             data["Away XG"].append(row.find('td', {'data-stat': DATA_STAT_AWAY_XG}).text.strip())
             data["Away Team"].append(row.find('td', {'data-stat': DATA_STAT_AWAY_TEAM}).text.strip())
-
             # special case, match report link -- append URL if found
             match_report_link = row.find('td', {'data-stat': DATA_STAT_MATCH_REPORT}).find('a', href=True)
             data["Match Report"].append(match_report_link['href'] if match_report_link else '')

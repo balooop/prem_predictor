@@ -18,8 +18,8 @@ if __name__ == "__main__":
     config = load_config('src/config.yaml')
     url = config['url']
     raw_data_path = config['raw_data_path']
-    played_path = config['played_output_path']
-    unplayed_path = config['unplayed_output_path']
+    played_path = config['played_path']
+    unplayed_path = config['unplayed_path']
     
     try: 
         # get data from fbref
